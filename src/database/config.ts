@@ -26,7 +26,7 @@ const test: ConnectionOptions = {
   username: "kxkpsxamyoxaov",
   password: "541ea398d51e3a284a98caaee22e4cc2564f43f0d278425176b99eb4389124a5",
   database: "daqutmq3hupqlr",
-  entities: ["src/api/entity/**/*.ts"],
+  entities: ["src/api/entities/**/*.ts"],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
   synchronize: true,
