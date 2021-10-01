@@ -15,8 +15,12 @@ const signup = {
 
   controller: async (req: Request, res: Response) => {
     try {
+      console.log(1);
+      
       const userRepo = getRepository(User);
       const isUser = await userRepo.findOne(req.body.username);
+      console.log(2);
+      
 
       if (isUser) {
         return res
@@ -32,6 +36,9 @@ const signup = {
           username: req.body.username
         })
       )
+
+      console.log(3);
+      
 
       if (user) {
         return res
