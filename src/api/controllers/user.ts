@@ -18,8 +18,8 @@ const signup = {
       console.log(1);
       
       const userRepo = getRepository(User);
-      const isUser = await userRepo.findOne(req.body.username);
       console.log(2);
+      const isUser = await userRepo.findOne(req.body.username);
       
 
       if (isUser) {
@@ -52,6 +52,8 @@ const signup = {
       throw new Error("User Not Added");
 
     } catch (error) {
+      console.log(error);
+      
       return res
         .status(httpStatus.BAD_REQUEST)
         .json({

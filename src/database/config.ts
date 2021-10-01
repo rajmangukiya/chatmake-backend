@@ -12,8 +12,8 @@ const development: ConnectionOptions = {
   password: "1234",
   database: "chatMake",
   entities: ["src/api/entities/**/*.ts"],
-  migrations: ["src/migration/**/*.ts"],
-  subscribers: ["src/subscriber/**/*.ts"],
+  // migrations: ["src/migration/**/*.ts"],
+  // subscribers: ["src/subscriber/**/*.ts"],
   synchronize: true,
 };
 
@@ -30,8 +30,14 @@ const test: ConnectionOptions = {
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
   synchronize: true,
-  logging: true,
-  ssl: true,
+  // logging: false,
+  // dropSchema: false,
+  // cli: {
+  //   entitiesDir: 'src/**/entities',
+  //   migrationsDir: 'src/database/migration',
+  //   subscribersDir: 'src/subscriber',
+  // },
+  // ssl: true,
   extra: {
     ssl: {
       rejectUnauthorized: false
