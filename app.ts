@@ -15,7 +15,7 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
-app.get('/api/v1/user/auth', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Server is running</h1>')
 })
 
