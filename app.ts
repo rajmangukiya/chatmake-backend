@@ -12,7 +12,7 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'https://chatmake.herokuapp.com'
 }))
 
 app.get('/', (req: Request, res: Response) => {

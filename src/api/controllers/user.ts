@@ -15,10 +15,8 @@ const signup = {
 
   controller: async (req: Request, res: Response) => {
     try {
-      console.log(1);
       
       const userRepo = getRepository(User);
-      console.log(2);
       const isUser = await userRepo.findOne(req.body.username);
       
 
@@ -35,10 +33,7 @@ const signup = {
         userRepo.create({
           username: req.body.username
         })
-      )
-
-      console.log(3);
-      
+      )      
 
       if (user) {
         return res
