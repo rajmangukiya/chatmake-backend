@@ -12,7 +12,7 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: 'http://192.168.56.1:3000'
+  origin: 'http://localhost:3000'
 }))
 
 app.get('/', (req: Request, res: Response) => {
