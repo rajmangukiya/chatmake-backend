@@ -23,7 +23,7 @@ app.use(express.json());
 setup(app);
 socketServer(httpServer);
 
-createConnection(development)
+createConnection(test)
   .then(() => {
     httpServer.listen(PORT, () => {
       console.log(`Server is running on port: ${PORT}`);
