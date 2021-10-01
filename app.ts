@@ -12,7 +12,7 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: 'https://rajmangukiya.github.io/chatmake'
+  origin: 'https://rajmangukiya.github.io'
 }))
 
 app.get('/', (req: Request, res: Response) => {
