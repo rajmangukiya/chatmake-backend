@@ -12,7 +12,7 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: 'https://rajmangukiya.github.io'
+  origin: ['https://rajmangukiya.github.io', 'http://localhost:3000']
 }))
 
 app.get('/', (req: Request, res: Response) => {
@@ -30,5 +30,5 @@ createConnection(test)
     });
   })
   .catch((e) => {
-    console.log("Error: ", e);
+    consol.log("Error: ", e);
   });
