@@ -30,5 +30,5 @@ createConnection(test)
     });
   })
   .catch((e) => {
-    consol.log("Error: ", e);
+    console.log("Error: ", e);
   });
