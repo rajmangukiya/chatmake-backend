@@ -16,15 +16,20 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: ['https://rajmangukiya.github.io', 'http://localhost:3000']
+  origin: ['https://rajmangukiya.github.io', 'http://localhost:3000'],
+  credentials: true,
+  maxAge: 1728000
 }))
 app.use(cookieParser());
 app.use(express.json());
 setup(app);
 socketServer(httpServer);
 
-app.get('/', (req: any, res: Response) => {  
-  res.send('<h1>Server is running</h1>')
+app.get('/', (req: any, res: Response) => {
+  res.cookie("rememberme", "2", {
+    expires: new Date(Date.now() + 900000),
+  });
+  res.send({ a: 1 });
 })
 
 createConnection(PORT === 5000 ? development : test)

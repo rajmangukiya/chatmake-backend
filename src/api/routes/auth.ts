@@ -16,7 +16,7 @@ router.get("/", (req: Request, res: Response) => {
 router.get("/callback", async (req: Request, res: Response) => {
   try {
 
-    console.log(res.header);
+    console.log("cookie", req.cookies);
     
 
     const code = req.query.code as string;
