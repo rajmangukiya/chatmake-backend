@@ -16,6 +16,9 @@ router.get("/", (req: Request, res: Response) => {
 router.get("/callback", async (req: Request, res: Response) => {
   try {
 
+    console.log(res.header);
+    
+
     const code = req.query.code as string;
 
     const { id_token, access_token } = await getTokens({

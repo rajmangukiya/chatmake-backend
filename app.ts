@@ -6,6 +6,7 @@ import { development, test, production } from "./src/database/config";
 import cors from 'cors';
 import dotenv from "dotenv";
 import { socketServer } from './src/socket';
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ const httpServer = createServer(app);
 app.use(cors({
   origin: ['https://rajmangukiya.github.io', 'http://localhost:3000']
 }))
-
+app.use(cookieParser());
 app.use(express.json());
 setup(app);
 socketServer(httpServer);
