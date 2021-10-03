@@ -26,10 +26,11 @@ setup(app);
 socketServer(httpServer);
 
 app.get('/', (req: any, res: Response) => {
-  res.cookie("rememberme", "2", {
-    expires: new Date(Date.now() + 900000),
-  });
-  res.send({ a: 1 });
+  console.log(req.cookies,req.cookies.remebreme);
+    res.cookie("rememberme", "2", {
+        expires: new  Date(Date.now() +  900000),
+    });
+    res.send({ a: 1 });
 })
 
 createConnection(PORT === 5000 ? development : test)
