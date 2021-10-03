@@ -12,6 +12,7 @@ export const setup = (app: Application) => {
     "/api/v1",
     jwt({ algorithms: ["HS256"], secret: process.env.JWT_SECRET }).unless({
       path: [
+        "/",
         "/api/v1/auth/google",
         "/api/v1/auth/google/callback",
       ],
