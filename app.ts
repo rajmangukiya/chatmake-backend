@@ -22,9 +22,7 @@ app.use(express.json());
 setup(app);
 socketServer(httpServer);
 
-app.get('/', (req: any, res: Response) => {
-  console.log(req.user);
-  
+app.get('/', (req: any, res: Response) => {  
   res.send('<h1>Server is running</h1>')
 })
 
