@@ -60,11 +60,6 @@ router.get("/callback", async (req: Request, res: Response) => {
 
     const token = getJWTToken(googleUser);
 
-    res.cookie(process.env.COOKIE_NAME, token, {
-      maxAge: (1000 * 60 * 60 * 24),
-      secure: false,
-    });
-
     res.redirect(`${process.env.CLIENT_ROOT_URI}?token=${token}`);
 
   } catch (error) {
