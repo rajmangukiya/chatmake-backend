@@ -9,8 +9,8 @@ import User from "../entities/User";
 const makeOneChat = {
   validator: celebrate({
     body: Joi.object().keys({
-      username1: Joi.string().required(),
-      username2: Joi.string().required(),
+      id1: Joi.string().required(),
+      id2: Joi.string().required(),
     })
   }),
 
@@ -20,7 +20,7 @@ const makeOneChat = {
 
       let isRoom: any = await roomRepo
         .createQueryBuilder('room')
-        .select(["room.id", "members.username"])
+        .select(["room.id", "members.id"])
         .where('room.name = :name', { name: 'personal' })
         .leftJoin("room.members", "members")
         .getMany()
@@ -30,7 +30,7 @@ const makeOneChat = {
           id: x.id,
           members: x.members.map((xx: any) => {
             return {
-              username: xx.username
+              id: xx.id
             }
           })
         }
@@ -39,8 +39,8 @@ const makeOneChat = {
       isRoom = isRoom.filter((x: any) => {
         return (
           x.members.length === 2
-          && [req.body.username1, req.body.username2].includes(x.members[0].username)
-          && [req.body.username1, req.body.username2].includes(x.members[1].username)
+          && [req.body.id1, req.body.id2].includes(x.members[0].id)
+          && [req.body.id1, req.body.id2].includes(x.members[1].id)
         );
       })
 
@@ -55,8 +55,8 @@ const makeOneChat = {
 
       const userRepo = getRepository(User);
 
-      const user1 = await userRepo.findOne(req.body.username1)
-      const user2 = await userRepo.findOne(req.body.username2)
+      const user1 = await userRepo.findOne(req.body.id1)
+      const user2 = await userRepo.findOne(req.body.id2)
 
       const room = await roomRepo.save(
         roomRepo.create({
@@ -77,6 +77,83 @@ const makeOneChat = {
       throw new Error("User Not Added");
 
     } catch (error) {
+      return res
+        .status(httpStatus.BAD_REQUEST)
+        .json({
+          data: null,
+          message: 'Error ' + Error
+        })
+    }
+
+  }
+}
+
+const makeGroupChat = {
+  validator: celebrate({
+    body: Joi.object().keys({
+      room_id: Joi.string().required(),
+      user_id: Joi.string().required(),
+    })
+  }),
+
+  controller: async (req: Request, res: Response) => {
+    try {
+      const roomRepo = getRepository(Room);
+      const userRepo = getRepository(User);
+
+      const isJoinedRoom = await roomRepo
+        .createQueryBuilder('room')
+        .select(["room", "members"])
+        .leftJoin('room.members', 'members')
+        .where('room.id = :id', { id: req.body.room_id })
+        .andWhere('members.id= :user_id', { user_id: req.body.user_id })
+        .getOne();
+
+      if (isJoinedRoom) {
+        return res
+          .status(httpStatus.OK)
+          .json({
+            data: null,
+            message: 'group already joined'
+          })
+      }
+
+      const room = await roomRepo
+      .createQueryBuilder('room')
+      .select(["room", "members"])
+      .leftJoin('room.members', 'members')
+      .where('room.id = :id', { id: req.body.room_id })
+      .getOne();
+
+      const user = await userRepo
+        .createQueryBuilder('user')
+        .where('user.id = :id', { id: req.body.user_id })
+        .getOne();
+
+      if(!user) {
+        return res
+        .status(httpStatus.NOT_FOUND)
+        .json({
+          data: null,
+          message: 'user not found'
+        })
+      }
+
+      await roomRepo
+        .createQueryBuilder()
+        .relation(Room, "members")
+        .of(room)
+        .add(user);
+
+      return res
+        .status(httpStatus.OK)
+        .json({
+          data: null,
+          message: 'group joined successfully'
+        })
+
+    } catch (error) {
+
       return res
         .status(httpStatus.BAD_REQUEST)
         .json({
@@ -110,8 +187,8 @@ const getAllGroups = {
 
       const userRepo = getRepository(User);
 
-      const user1 = await userRepo.findOne(req.body.username1)
-      const user2 = await userRepo.findOne(req.body.username2)
+      const user1 = await userRepo.findOne(req.body.id1)
+      const user2 = await userRepo.findOne(req.body.id2)
 
       const room = await roomRepo.save(
         roomRepo.create({
@@ -146,7 +223,7 @@ const getAllGroups = {
 const createGroup = {
   validator: celebrate({
     body: Joi.object().keys({
-      username: Joi.string().required(),
+      id: Joi.string().required(),
       groupname: Joi.string().required(),
     })
   }),
@@ -171,7 +248,7 @@ const createGroup = {
 
       const userRepo = getRepository(User);
 
-      const user = await userRepo.findOne(req.body.username)
+      const user = await userRepo.findOne(req.body.id)
 
       const group = await roomRepo.save(
         roomRepo.create({
@@ -206,5 +283,6 @@ const createGroup = {
 export {
   makeOneChat,
   getAllGroups,
-  createGroup
+  createGroup,
+  makeGroupChat
 }

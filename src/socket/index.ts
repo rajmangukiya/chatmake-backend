@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 export const socketServer = (httpServer: any) => {
   const io = new Server(httpServer, {
     cors: {
-      origin: ["https://rajmangukiya.github.io"]
+      origin: ["https://rajmangukiya.github.io", "http://localhost:3000"]
     }
   })
   
@@ -15,12 +15,12 @@ export const socketServer = (httpServer: any) => {
       // socket.broadcast.to(room).emit('message', {username: 'admin', message: `${username} has joined the chat`})
     })
   
-    socket.on('sendMessage', ({username, room, message}) => {
-      io.to(room).emit('message', {username, message});
+    socket.on('sendMessage', ({id, username, room, message}) => {
+      io.to(room).emit('message', {id, username, message});
     })
     
-    socket.on('left', (username, room) => {
-      socket.broadcast.to(room).emit('message', {username: 'admin', message: `${username} has left the chat`});
-    })
+    // socket.on('left', (username, room) => {
+    //   socket.broadcast.to(room).emit('message', {username: 'admin', message: `${username} has left the chat`});
+    // })
   });
 } 
