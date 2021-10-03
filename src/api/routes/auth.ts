@@ -65,7 +65,7 @@ router.get("/callback", async (req: Request, res: Response) => {
       secure: false,
     });
 
-    res.redirect(process.env.CLIENT_ROOT_URI);
+    res.redirect(`${process.env.CLIENT_ROOT_URI}?token=${token}`);
 
   } catch (error) {
     console.log(error);

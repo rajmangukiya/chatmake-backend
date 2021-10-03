@@ -26,11 +26,7 @@ setup(app);
 socketServer(httpServer);
 
 app.get('/', (req: any, res: Response) => {
-  console.log(req.cookies,req.cookies.remebreme);
-    res.cookie("rememberme", "2", {
-        expires: new  Date(Date.now() +  900000),
-    });
-    res.send({ a: 1 });
+  res.send('<h1>Server is running</h1>')
 })
 
 createConnection(PORT === 5000 ? development : test)
