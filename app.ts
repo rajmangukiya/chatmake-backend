@@ -16,7 +16,7 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: ['https://rajmangukiya.github.io', 'http://localhost:3000'],
+  origin: '*',
   credentials: true,
   maxAge: 1728000
 }))
