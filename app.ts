@@ -17,7 +17,7 @@ const httpServer = createServer(app);
 
 app.use(cors({
   origin: '*',
-  credentials: true,
+  // credentials: true,
   maxAge: 1728000
 }))
 app.use(cookieParser());
