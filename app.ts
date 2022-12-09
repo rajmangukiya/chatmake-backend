@@ -20,7 +20,7 @@ app.use(cors({
     'http://192.168.56.1:3000',
     'https://sensational-genie-8fe1af.netlify.app'
   ],
-  // credentials: true,
+  credentials: true,
   maxAge: 1728000
 }))
 app.use(cookieParser());
