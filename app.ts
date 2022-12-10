@@ -17,7 +17,8 @@ const httpServer = createServer(app);
 
 app.use(cors({
   origin: [
-    'https://chatmake.onrender.com'
+    'https://chatmake.onrender.com',
+    'http://192.168.56.1:3000'
   ],
   credentials: true,
   maxAge: 1728000
