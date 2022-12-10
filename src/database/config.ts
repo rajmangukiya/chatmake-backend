@@ -19,13 +19,13 @@ const development: ConnectionOptions = {
 
 const test: ConnectionOptions = {
   name: "default",
-  // url: "postgres://kxkpsxamyoxaov:541ea398d51e3a284a98caaee22e4cc2564f43f0d278425176b99eb4389124a5@ec2-44-196-44-90.compute-1.amazonaws.com:5432/daqutmq3hupqlr",
+  url: "postgres://chatmake_backend_user:DIktHw50MYAcNTIV5OfilyseIjEo0Bmh@dpg-cea2ndp4reb52upi0nf0-a.oregon-postgres.render.com/chatmake_backend",
   type: "postgres",
-  host: "ec2-44-193-228-249.compute-1.amazonaws.com",
+  // host: "ec2-44-193-228-249.compute-1.amazonaws.com",
   port: 5432,
-  username: "eqwcanknsdhwtp",
-  password: "6d364d0d14213c514e60f4bf50688c869896033ee195174d23a7c64a8c767878",
-  database: "d6i368t7a90309",
+  // username: "eqwcanknsdhwtp",
+  // password: "6d364d0d14213c514e60f4bf50688c869896033ee195174d23a7c64a8c767878",
+  // database: "chatmake_backend",
   entities: ["src/api/entities/**/*.ts"],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],

@@ -32,7 +32,7 @@ app.get('/', (req: any, res: Response) => {
   res.send('<h1>Server is running</h1>')
 })
 
-createConnection(PORT === 5000 ? development : test)
+createConnection(PORT === 5000 ? test : test)
   .then(() => {
     httpServer.listen(PORT, () => {
       console.log(`Server is running on port : ${PORT}`);
