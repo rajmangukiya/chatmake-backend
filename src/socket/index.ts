@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 export const socketServer = (httpServer: any) => {
   const io = new Server(httpServer, {
     cors: {
-      origin: ["https://rajmangukiya.github.io", "http://localhost:3000"]
+      origin: ["https://chatmake.onrender.com", "http://localhost:3000"]
     }
   })
   
