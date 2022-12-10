@@ -17,8 +17,7 @@ const httpServer = createServer(app);
 
 app.use(cors({
   origin: [
-    'http://192.168.56.1:3000',
-    'https://sensational-genie-8fe1af.netlify.app'
+    'https://chatmake.onrender.com'
   ],
   credentials: true,
   maxAge: 1728000
