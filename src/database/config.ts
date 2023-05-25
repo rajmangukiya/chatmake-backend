@@ -19,7 +19,7 @@ const development: ConnectionOptions = {
 
 const test: ConnectionOptions = {
   name: "default",
-  url: "postgres://chatmake_backend_user:DIktHw50MYAcNTIV5OfilyseIjEo0Bmh@dpg-cea2ndp4reb52upi0nf0-a.oregon-postgres.render.com/chatmake_backend",
+  url: "postgres://fashion_backend_database_user:xa1HTTXlnyR1kv9PxTrA7OVyaQEzs583@dpg-chnjcs1mbg5577m1ck90-a.oregon-postgres.render.com/fashion_backend_database",
   type: "postgres",
   // host: "ec2-44-193-228-249.compute-1.amazonaws.com",
   port: 5432,
