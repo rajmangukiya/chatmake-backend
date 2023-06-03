@@ -3,13 +3,17 @@ import { Server } from 'socket.io';
 export const socketServer = (httpServer: any) => {
   const io = new Server(httpServer, {
     cors: {
-      origin: ["https://chatmake.onrender.com", "http://localhost:3000"]
+      origin: [
+        "https://chatmake.onrender.com",
+        "http://localhost:3000",
+        "http://192.168.56.1:3000",
+      ]
     }
   })
   
   io.on("connection", (socket) => {
   
-    socket.on('join', ({username, room}) => {
+    socket.on('join', ({room}) => {
       socket.join(room);
       // socket.emit('message', {username: 'admin', message: `${username}, Welcome to the chat`});
       // socket.broadcast.to(room).emit('message', {username: 'admin', message: `${username} has joined the chat`})

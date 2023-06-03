@@ -79,7 +79,7 @@ const getAllUser = {
           );
         })[0];
         user["room"] = room?.id;
-        user["message"] = room?.messages[0]?.message;
+        user["message"] = room?.messages?.pop().message;
         if (room?.messages[0]?.created_at) {
           user["lastDate"] = moment(room?.messages[0]?.created_at).calendar();
         }
